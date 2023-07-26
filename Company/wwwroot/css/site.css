@@ -1,4 +1,4 @@
-/* Default element style */
+﻿/* Default element style */
 /* ------------------------------------------------------------- */
 html, body {
     width: 100%;
@@ -18,15 +18,56 @@ html, body {
 .link-default {
     text-decoration: none;
 }
+
 .h-default {
     text-transform: uppercase;
 }
 
-@media (min-width: 768px) {
+/* 
+    iPads, Tablets
+*/
+@media (min-width: 481px) and (max-width: 768px) {
     html, body {
         font-size: 16px;
     }
+
+    .content {
+        flex-direction: column !important;
+    }
+
+    .card-departments, .card-employee {
+        display: flex;
+        flex-direction: column-reverse;
+        width: 90% !important;
+        height: 350px !important;
+    }
+
+        .card-employee img {
+            height: 90% !important;
+        }
 }
+/* 
+    Small screens, laptops
+*/
+@media (min-width:769px) and (max-width: 1024px) {
+    html, body {
+        font-size: 16px;
+    }
+
+    .content {
+        flex-direction: column !important;
+    }
+
+    .card-departments, .card-employee {
+        width: 90% !important;
+        height: 350px !important;
+    }
+
+        .card-employee img {
+            height:90% !important;
+        }
+}
+
 /* ------------------------------------------------------------- */
 
 
@@ -150,25 +191,54 @@ main {
 
 .card-employee {
     background: radial-gradient(at left top, #3289A0, #EDCCBB);
-    width: 60%;   
+    width: 60%;
 }
 
     .card-employee img {
         object-position: left bottom;
-        width: 100%;
+        /*width: 100%;*/
     }
+
 .image {
     object-position: left bottom;
+    height: 90%;
     width: 100%;
 }
 
 .card-departments {
+    display: flex;
+    flex-direction: column;
     width: 40%;
     background-color: #F7D3C1;
-    color:black;
+    color: black;
 }
+
     .card-departments img {
         width: 100%;
+    }
+
+    /*
+        table
+    */
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .table th,
+    .table td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table th {
+        background-color: #f2f2f2;
+    }
+
+    .table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
     }
 /*
 
