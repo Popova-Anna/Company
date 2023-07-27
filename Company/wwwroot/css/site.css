@@ -22,7 +22,9 @@ html, body {
 .h-default {
     text-transform: uppercase;
 }
-
+.li-default {
+    list-style-type: none; 
+}
 /* 
     iPads, Tablets
 */

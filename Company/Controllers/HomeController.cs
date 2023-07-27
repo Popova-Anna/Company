@@ -32,7 +32,7 @@ namespace Company.Controllers
             {
                 if (department.ParentDepartmentId == null)
                 {
-                    sb.AppendLine(Handler.ParentStruct(department));
+                    sb.AppendLine("<a asp-controller=\"Departments\" asp-action=\"Employee\\" + department.Id + " \">" + Handler.ParentStruct(department) + "</a>");
                 }
 
             }

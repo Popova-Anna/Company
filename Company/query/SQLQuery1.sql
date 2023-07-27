@@ -10,15 +10,16 @@
 --SELECT id, name, level
 --FROM dept_hierarchy
 --ORDER BY level, id;
-WITH dept_hierarchy AS (
-    SELECT ID, Name, ParentDepartmentID, CONVERT(NVARCHAR(MAX), name) AS path
-    FROM TestDB.dbo.Department
-    WHERE ParentDepartmentID IS NULL -- выбираем корневые отделы
-    UNION ALL
-    SELECT d.ID, d.Name, d.ParentDepartmentID, CONCAT(dh.path, ' > ', d.name)
-    FROM TestDB.dbo.Department d
-    INNER JOIN dept_hierarchy dh ON d.ParentDepartmentID = dh.ID
-)
-SELECT id, name, path
-FROM dept_hierarchy
-ORDER BY path;
+--WITH dept_hierarchy AS (
+--    SELECT ID, Name, ParentDepartmentID, CONVERT(NVARCHAR(MAX), name) AS path
+--    FROM TestDB.dbo.Department
+--    WHERE ParentDepartmentID IS NULL -- выбираем корневые отделы
+--    UNION ALL
+--    SELECT d.ID, d.Name, d.ParentDepartmentID, CONCAT(dh.path, ' > ', d.name)
+--    FROM TestDB.dbo.Department d
+--    INNER JOIN dept_hierarchy dh ON d.ParentDepartmentID = dh.ID
+--)
+--SELECT id, name, path
+--FROM dept_hierarchy
+--ORDER BY path;
+Select * From Empoyee Inner Join Department On Department.ID = Empoyee.DepartmentID Where   Empoyee.DepartmentID = 564

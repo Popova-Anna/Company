@@ -1,0 +1,79 @@
+﻿@model Company.Models.Department
+
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h1>Сотрудники отдела @Model.Name</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Фамилия
+            </th>
+            <th>
+                Отчество
+            </th>
+            <th>
+                Дата рождения
+            </th>
+            <th>
+                Возраст
+            </th>
+            <th>
+                Серия
+            <th>
+                Номер
+            </th>
+            <th>
+                Должность
+            </th>
+            <th>
+                Отдел
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Empoyees)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SurName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Patronymic)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfBirth)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocSeries)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DocNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Department.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-controller="Empoyees" asp-route-id="@item.Id">Редактировать</a> |
+                    <a asp-action="Details" asp-controller="Empoyees" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Delete" asp-controller="Empoyees" asp-route-id="@item.Id">Удалить</a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>

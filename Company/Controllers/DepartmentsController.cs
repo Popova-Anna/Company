@@ -25,6 +25,27 @@ namespace Company.Controllers
             return View(await companyContext.ToListAsync());
         }
 
+        public IActionResult Employee(Guid? id)
+        {
+            if (id == null || _context.Departments == null)
+            {
+                return NotFound();
+            }
+            
+            var department = _context.Departments
+                .Include(d => d.ParentDepartment)
+                .Include(d=>d.Empoyees)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+            if (department == null)
+            {
+                return NotFound();
+            }
+
+            return View(department);
+        }
+
+
         // GET: Departments/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
