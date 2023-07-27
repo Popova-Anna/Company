@@ -35,7 +35,7 @@ namespace Company.Controllers
             var department = _context.Departments
                 .Include(d => d.ParentDepartment)
                 .Include(d=>d.Empoyees)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefault(m => m.Id == id);
 
             if (department == null)
             {

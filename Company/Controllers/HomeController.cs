@@ -27,12 +27,11 @@ namespace Company.Controllers
             List<ViewDepartments> viewDepartments = new List<ViewDepartments>();
             var companyContext = _context.Departments.Include(d => d.InverseParentDepartment).ToList();
             var sb = new StringBuilder();
-
             foreach (var department in companyContext)
             {
                 if (department.ParentDepartmentId == null)
                 {
-                    sb.AppendLine("<a asp-controller=\"Departments\" asp-action=\"Employee\\" + department.Id + " \">" + Handler.ParentStruct(department) + "</a>");
+                    sb.AppendLine( Handler.ParentStruct(department));
                 }
 
             }
