@@ -42,7 +42,8 @@ html, body {
     .action-link::before,
     .action-edit::before,
     .action-details::before,
-    .action-create::before {
+    .action-create::before,
+    .action-delete::before{
         content: "";
         position: absolute;
         top: 50%;
@@ -59,25 +60,44 @@ html, body {
     .action-link:hover::before,
     .action-edit:hover::before,
     .action-details:hover::before,
-    .action-create:hover::before {
+    .action-create:hover::before,
+    .action-delete:hover::before {
         filter: drop-shadow(2px 4px 6px black);
     }
 
-    .action-edit{
-        color:green;
-    }
-.action-details{
-color:blue;
-}
-.action-delete {
-    color:red;
-}
-.action-create {
-    color: green;
+.action-edit,
+.action-details,
+.action-create,
+.action-delete{
     position: relative;
-    display: inline-block;   
+    display: inline-block;
     padding-left: 20px;
 }
+
+.action-edit {
+    color: green;
+}
+.action-edit::before {
+    background-image: url(/img/icons8-edit-32.png);
+}
+.action-details {
+    color: blue;
+}
+.action-details::before {
+    background-image: url(/img/icons8-information.svg);
+}
+.action-delete {
+    color: red;
+}
+
+    .action-delete::before {
+        background-image: url(/img/icons8-close.svg);
+    }
+
+.action-create {
+    color: green;
+}
+
     .action-create::before {
         background-image: url(/img/icons8-plus.svg)
     }
@@ -145,7 +165,6 @@ nav {
 header {
     grid-area: 1/2/2/7;
     background-color: #F8F6F4;
-    /*border-radius: 20px;*/
     margin: 14px;
     padding: 20px;
     display: flex;
@@ -166,7 +185,6 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*background-color: #A1CCD1;*/
     margin-left: 5px;
 }
 
@@ -367,9 +385,7 @@ select option {
         justify-content:space-between;
         gap: 10px;
     }
-        /*.form .form-row .form-control{
-            margin:10px
-        }*/
+
         .form .form-group {
             width:100%;
             display: flex;
@@ -411,9 +427,3 @@ select option {
         display: block;
         margin-bottom: 5px;
     }
-    .form button:active {
-        scale: 0.95;
-    }
-/*
-
-*/

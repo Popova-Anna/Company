@@ -50,6 +50,7 @@ namespace Company.Controllers
         public IActionResult Create()
         {
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
+            ViewData["Title"] = "Добавить сотрудника ";
             return View();
         }
 
@@ -152,7 +153,7 @@ namespace Company.Controllers
         {
             if (_context.Empoyees == null)
             {
-                return Problem("Entity set 'CompanyContext.Empoyees'  is null.");
+                return Problem("База сотрудников пустая!");
             }
             var empoyee = await _context.Empoyees.FindAsync(id);
             if (empoyee != null)

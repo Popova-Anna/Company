@@ -14,7 +14,7 @@ public partial class Department
     [Display(Name = "Код")]
     [MaxLength(10)]
     public string? Code { get; set; }
-
+    [Display(Name = "Главный отдел")]
     public Guid? ParentDepartmentId { get; set; }
     [Display(Name = "Сотрудники")]
     public virtual ICollection<Empoyee> Empoyees { get; set; } = new List<Empoyee>();

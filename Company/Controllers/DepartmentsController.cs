@@ -22,6 +22,7 @@ namespace Company.Controllers
         public async Task<IActionResult> Index()
         {
             var companyContext = _context.Departments.Include(d => d.ParentDepartment);
+            ViewData["Title"] = "Отделы компании";
             return View(await companyContext.ToListAsync());
         }
 
@@ -61,14 +62,14 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-            ViewData["Title"] = "Подробная информация об отделе" + department.Name;
+            ViewData["Title"] = "Подробная информация об отделе " + department.Name;
             return View(department);
         }
 
         // GET: Departments/Create
         public IActionResult Create()
         {
-            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id");
+            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             ViewData["Title"] = "Добавление отдела";
             return View();
         }
@@ -85,7 +86,7 @@ namespace Company.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id", department.ParentDepartmentId);
+            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Name", department.ParentDepartmentId);
             ViewData["Title"] = "Добавление отдел";
             return View(department);
         }
@@ -138,7 +139,7 @@ namespace Company.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id", department.ParentDepartmentId);
+            ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Name", department.ParentDepartmentId);
             ViewData["Title"] = "Редактирование информации об отделе " + department.Name;
             return View(department);
         }
@@ -169,7 +170,7 @@ namespace Company.Controllers
         {
             if (_context.Departments == null)
             {
-                return Problem("Entity set 'CompanyContext.Departments'  is null.");
+                return Problem("База отделов пустая!");
             }
             var department = await _context.Departments.FindAsync(id);
             if (department != null)
