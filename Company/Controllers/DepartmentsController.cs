@@ -41,7 +41,7 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Сотрудники отдела " + department.Name;
             return View(department);
         }
 
@@ -61,7 +61,7 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Подробная информация об отделе" + department.Name;
             return View(department);
         }
 
@@ -69,6 +69,7 @@ namespace Company.Controllers
         public IActionResult Create()
         {
             ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id");
+            ViewData["Title"] = "Добавление отдела";
             return View();
         }
 
@@ -85,6 +86,7 @@ namespace Company.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id", department.ParentDepartmentId);
+            ViewData["Title"] = "Добавление отдел";
             return View(department);
         }
 
@@ -102,6 +104,7 @@ namespace Company.Controllers
                 return NotFound();
             }
             ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Name", department.ParentDepartmentId);
+            ViewData["Title"] = "Редактирование информации об отделе "+department.Name;
             return View(department);
         }
 
@@ -136,6 +139,7 @@ namespace Company.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ParentDepartmentId"] = new SelectList(_context.Departments, "Id", "Id", department.ParentDepartmentId);
+            ViewData["Title"] = "Редактирование информации об отделе " + department.Name;
             return View(department);
         }
 
@@ -154,7 +158,7 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Удаление отдела " + department.Name;
             return View(department);
         }
 
@@ -172,7 +176,6 @@ namespace Company.Controllers
             {
                 _context.Departments.Remove(department);
             }
-            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

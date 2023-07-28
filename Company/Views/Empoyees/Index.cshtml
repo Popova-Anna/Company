@@ -1,13 +1,8 @@
 ﻿@model IEnumerable<Company.Models.Empoyee>
 
-@{
-    ViewData["Title"] = "Index";
-}
-
-<h1>Сотрудники компании</h1>
 <div class="content content-column">
     <p>
-        <a asp-action="Create">Добавить нового сотрудника</a>
+        <a class="link-default action-create" asp-action="Create">Добавить нового сотрудника</a>
     </p>
     <table class="table">
         <thead>
@@ -23,6 +18,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DateOfBirth)
+                </th>
+                <th>
+                    Возраст
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DocSeries)
@@ -56,6 +54,9 @@
                         @Html.DisplayFor(modelItem => item.DateOfBirth)
                     </td>
                     <td>
+                        @(DateTime.Now.Year - item.DateOfBirth.Year)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.DocSeries)
                     </td>
                     <td>
@@ -68,9 +69,9 @@
                         @Html.DisplayFor(modelItem => item.Department.Name)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
+                        <a class="link-default action-edit" asp-action="Edit" asp-route-id="@item.Id">Редактировать</a> |
+                        <a class="link-default action-details" asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                        <a class="link-default action-delete" asp-action="Delete" asp-route-id="@item.Id">Удалить</a>
                     </td>
                 </tr>
             }

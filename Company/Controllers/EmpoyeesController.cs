@@ -21,6 +21,7 @@ namespace Company.Controllers
         // GET: Empoyees
         public async Task<IActionResult> Index()
         {
+            ViewData["Title"] = "Сотрудники компании";
             var companyContext = _context.Empoyees.Include(e => e.Department).ToListAsync();
             return View(await companyContext);
         }
@@ -28,6 +29,7 @@ namespace Company.Controllers
         // GET: Empoyees/Details/5
         public async Task<IActionResult> Details(decimal? id)
         {
+            
             if (id == null || _context.Empoyees == null)
             {
                 return NotFound();
@@ -40,7 +42,7 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Подробная информация о сотруднике "+empoyee.SurName+" " +empoyee.FirstName + " " + empoyee.Patronymic;
             return View(empoyee);
         }
 
@@ -64,7 +66,8 @@ namespace Company.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", empoyee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", empoyee.DepartmentId);
+            ViewData["Title"] = "Добавить сотрудника ";
             return View(empoyee);
         }
 
@@ -81,7 +84,8 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", empoyee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", empoyee.DepartmentId);
+            ViewData["Title"] = "Редактирование информации о сотруднике " + empoyee.SurName + " " + empoyee.FirstName + " " + empoyee.Patronymic;
             return View(empoyee);
         }
 
@@ -117,7 +121,8 @@ namespace Company.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id", empoyee.DepartmentId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name", empoyee.DepartmentId);
+            ViewData["Title"] = "Редактирование информации о сотруднике " + empoyee.SurName + " " + empoyee.FirstName + " " + empoyee.Patronymic;
             return View(empoyee);
         }
 
@@ -136,7 +141,7 @@ namespace Company.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["Title"] = "Удалить сотрудника " + empoyee.SurName + " " + empoyee.FirstName + " " + empoyee.Patronymic;
             return View(empoyee);
         }
 
@@ -154,7 +159,7 @@ namespace Company.Controllers
             {
                 _context.Empoyees.Remove(empoyee);
             }
-            
+            ViewData["Title"] = "Удалить сотрудника " + empoyee.SurName + " " + empoyee.FirstName + " " + empoyee.Patronymic;
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -5,11 +5,12 @@ html, body {
     height: 100%;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(#465B69, #687F88);
+    /*background: linear-gradient(#465B69, #687F88);*/
+    background-color: #C4DFDF;
     margin: 0;
     padding: 0;
     position: relative;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .text-white {
@@ -38,7 +39,10 @@ html, body {
     padding:20px;
     color: #465B69;
 }
-    .action-link::before {
+    .action-link::before,
+    .action-edit::before,
+    .action-details::before,
+    .action-create::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -47,14 +51,35 @@ html, body {
         width: 15px;
         height: 15px;
         background-size: cover;
-        background-image: url(/img/back.png)
+      
     }
-    .action-link:hover::before {
+    .action-link::before{
+  background-image: url(/img/back.png)
+    }
+    .action-link:hover::before,
+    .action-edit:hover::before,
+    .action-details:hover::before,
+    .action-create:hover::before {
         filter: drop-shadow(2px 4px 6px black);
     }
-    .action-link:hover {
-        /*background-color: #465B69;*/
-        /*color:white;*/
+
+    .action-edit{
+        color:green;
+    }
+.action-details{
+color:blue;
+}
+.action-delete {
+    color:red;
+}
+.action-create {
+    color: green;
+    position: relative;
+    display: inline-block;   
+    padding-left: 20px;
+}
+    .action-create::before {
+        background-image: url(/img/icons8-plus.svg)
     }
 /* ------------------------------------------------------------- */
 /*    iPads, Tablets                                             */
@@ -106,8 +131,8 @@ html, body {
 /* ------------------------------------------------------------- */
 .main-grid-container {
     display: grid;
-    grid-template-columns: 120px repeat(5, 1fr);
-    grid-template-rows: 50px 1fr;
+    grid-template-columns: 90px repeat(5, 1fr);
+    grid-template-rows: 90px 1fr;
     grid-gap: 0;
     width: 100%;
     height: 100%;
@@ -119,6 +144,13 @@ nav {
 
 header {
     grid-area: 1/2/2/7;
+    background-color: #F8F6F4;
+    /*border-radius: 20px;*/
+    margin: 14px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapper {
@@ -129,41 +161,41 @@ header {
     position: fixed;
     top: 0;
     bottom: 0;
-    width: 120px;
+    width: 90px;
     min-height: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    /*background-color: #A1CCD1;*/
+    margin-left: 5px;
 }
 
 main {
-    border-radius: 20px;
-    background-color: white;
+    background-color: #F8F6F4;
     margin: 15px;
     padding: 15px;
     height: calc(100% - 60px);
     overflow: auto;
+    justify-content:center;
 }
-/* Стилизуем полосу прокрутки */
+/* ------------------------------------------------------------- */
+/* scroll style                                                  */
+/* ------------------------------------------------------------- */
     main::-webkit-scrollbar {
-        margin-right:5px;
-        width: 6px; /* Ширина полосы прокрутки */
+        margin-right: 5px;
+        width: 6px;
     }
 
-/* Стилизуем трек (фон) полосы прокрутки */
     main::-webkit-scrollbar-track {
-        background-color: #f1f1f1; /* Цвет фона */
+        background-color: #f1f1f1;
     }
 
-/* Стилизуем ползунок (бегунок) полосы прокрутки */
     main::-webkit-scrollbar-thumb {
-        background-color: #888; /* Цвет ползунка */
-        border-radius: 20px;
+        background-color: #888;
     }
 
-    /* Изменяем внешний вид ползунка при наведении */
         main::-webkit-scrollbar-thumb:hover {
-            background-color: #555; /* Цвет ползунка при наведении */
+            background-color: #555;
         }
 /* ------------------------------------------------------------- */
 
@@ -193,7 +225,6 @@ main {
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
-    justify-content: center;
     height: 100% !important;
 }
 
@@ -277,6 +308,7 @@ main {
 .table {
     width: 100%;
     border-collapse: collapse;
+    overflow-x: auto;
 }
 
     .table th,
@@ -294,28 +326,23 @@ main {
         background-color: #f9f9f9;
     }
 
-/* ------------------------------------------------------------- */
-/* struct organisation                                           */
-/* ------------------------------------------------------------- */
-
-.tree {
-    width:fit-content;
-    list-style-type: none;
-}
+    /* ------------------------------------------------------------- */
+    /* struct organisation                                           */
+    /* ------------------------------------------------------------- */
+    .tree {
+        width: fit-content;
+        list-style-type: none;
+    }
 
     .tree li a {
         color: black;
     }
     .tree > li:hover a {
-        color: #465B69;
+        color: #E9B384;
         -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
         -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
         box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
     }
- /*   .tree > li > a:hover {
-        color: #465B69;
-        background-color: transparent;
-    }*/
 /* ------------------------------------------------------------- */
 /* form                                                          */
 /* ------------------------------------------------------------- */

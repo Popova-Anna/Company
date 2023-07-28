@@ -1,11 +1,5 @@
 ﻿@model Company.Models.Department
 
-@{
-    ViewData["Title"] = "Сотрудники отдела "+ @Model.Name;
-}
-
-<h1>Сотрудники отдела @Model.Name</h1>
-
 <table class="table">
     <thead>
         <tr>
@@ -71,9 +65,9 @@
                     @Html.DisplayFor(modelItem => item.Department.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-controller="Empoyees" asp-route-id="@item.Id">Редактировать</a> |
-                    <a asp-action="Details" asp-controller="Empoyees" asp-route-id="@item.Id">Подробнее</a> |
-                    <a asp-action="Delete" asp-controller="Empoyees" asp-route-id="@item.Id">Удалить</a>
+                    <a class="link-default action-edit" asp-action="Edit" asp-controller="Empoyees" asp-route-id="@item.Id">Редактировать</a> |
+                    <a class="link-default action-details" asp-action="Details" asp-controller="Empoyees" asp-route-id="@item.Id">Подробнее</a> |
+                    <a class="link-default action-delete" asp-action="Delete" asp-controller="Empoyees" asp-route-id="@item.Id">Удалить</a>
                 </td>
             </tr>
         }
