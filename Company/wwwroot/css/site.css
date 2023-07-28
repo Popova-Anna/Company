@@ -9,6 +9,7 @@ html, body {
     margin: 0;
     padding: 0;
     position: relative;
+    overflow:hidden;
 }
 
 .text-white {
@@ -26,6 +27,35 @@ html, body {
 .li-default {
     list-style-type: none;
 }
+.text-danger{
+    color:red;
+}
+.action-link {
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    padding:20px;
+    color: #465B69;
+}
+    .action-link::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0px;
+        transform: translateY(-50%);
+        width: 15px;
+        height: 15px;
+        background-size: cover;
+        background-image: url(/img/back.png)
+    }
+    .action-link:hover::before {
+        filter: drop-shadow(2px 4px 6px black);
+    }
+    .action-link:hover {
+        /*background-color: #465B69;*/
+        /*color:white;*/
+    }
 /* ------------------------------------------------------------- */
 /*    iPads, Tablets                                             */
 /* ------------------------------------------------------------- */
@@ -112,7 +142,29 @@ main {
     margin: 15px;
     padding: 15px;
     height: calc(100% - 60px);
+    overflow: auto;
 }
+/* Стилизуем полосу прокрутки */
+    main::-webkit-scrollbar {
+        margin-right:5px;
+        width: 6px; /* Ширина полосы прокрутки */
+    }
+
+/* Стилизуем трек (фон) полосы прокрутки */
+    main::-webkit-scrollbar-track {
+        background-color: #f1f1f1; /* Цвет фона */
+    }
+
+/* Стилизуем ползунок (бегунок) полосы прокрутки */
+    main::-webkit-scrollbar-thumb {
+        background-color: #888; /* Цвет ползунка */
+        border-radius: 20px;
+    }
+
+    /* Изменяем внешний вид ползунка при наведении */
+        main::-webkit-scrollbar-thumb:hover {
+            background-color: #555; /* Цвет ползунка при наведении */
+        }
 /* ------------------------------------------------------------- */
 
 /* logo style                                                    */
@@ -254,13 +306,87 @@ main {
     .tree li a {
         color: black;
     }
-
-        .tree >li> a:hover {
-            color: #465B69;
+    .tree > li:hover a {
+        color: #465B69;
+        -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+        -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+        box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    }
+ /*   .tree > li > a:hover {
+        color: #465B69;
+        background-color: transparent;
+    }*/
+/* ------------------------------------------------------------- */
+/* form                                                          */
+/* ------------------------------------------------------------- */
+select option {
+   padding: 10px;
+   min-height:100px;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    min-width:200px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+    .form .form-row {
+        display: flex;
+        flex-direction: row;
+        justify-content:space-between;
+        gap: 10px;
+    }
+        /*.form .form-row .form-control{
+            margin:10px
+        }*/
+        .form .form-group {
+            width:100%;
+            display: flex;
+            flex-direction: column;
         }
 
+            .form .form-group input[type="text"].form-control,
+            .form .form-group input[type="number"].form-control,
+            .form .form-group input[type="submit"],
+            .form .form-group input[type="date"].form-control,
+            .form .form-group select.form-control {
+                padding: 12px 16px;
+                border: 1px solid rgba(105,105,105,0.397);
+                border-radius: 10px;
+            }
 
-       
+                .form .form-group input[type="text"].form-control:focus,
+                .form .form-group input[type="number"].form-control:focus,
+                .form .form-group input[type="submit"]:focus,
+                .form .form-group input[type="date"].form-control:focus,
+                .form .form-group select.form-control:focus {
+                    -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                    -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                    box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
+                }
+                .form .form-group input[type="text"].form-control:hover,
+                .form .form-group input[type="number"].form-control:hover,
+                .form .form-group input[type="submit"]:hover,
+                .form .form-group input[type="date"].form-control:hover,
+                .form .form-group select.form-control:hover {
+                    -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                    -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                    box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
+                }
+    .form .form-group span {
+        margin:5px;
+    }
+    .form .control-label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form button:active {
+        scale: 0.95;
+    }
 /*
 
 */

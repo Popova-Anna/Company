@@ -1,17 +1,16 @@
 ﻿@model Company.Models.Empoyee
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Добавить нового сотрудника";
 }
 
-<h1>Create</h1>
+<h1>Добавить нового сотрудника</h1>
 
-<h4>Empoyee</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+        <form class="form"  class="form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
             <div class="form-group">
                 <label asp-for="FirstName" class="control-label"></label>
                 <input asp-for="FirstName" class="form-control" />
@@ -22,6 +21,8 @@
                 <input asp-for="SurName" class="form-control" />
                 <span asp-validation-for="SurName" class="text-danger"></span>
             </div>
+            </div>
+           
             <div class="form-group">
                 <label asp-for="Patronymic" class="control-label"></label>
                 <input asp-for="Patronymic" class="form-control" />
@@ -29,17 +30,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="DateOfBirth" class="control-label"></label>
-                <input asp-for="DateOfBirth" class="form-control" />
+            <input asp-for="DateOfBirth" type="date" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DocSeries" class="control-label"></label>
-                <input asp-for="DocSeries" class="form-control" />
+                <input asp-for="DocSeries" type="text" class="form-control" />
                 <span asp-validation-for="DocSeries" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="DocNumber" class="control-label"></label>
-                <input asp-for="DocNumber" class="form-control" />
+                <input asp-for="DocNumber" type="number" class="form-control" />
                 <span asp-validation-for="DocNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,17 +50,17 @@
             </div>
             <div class="form-group">
                 <label asp-for="DepartmentId" class="control-label"></label>
-                <select asp-for="DepartmentId" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
+                <select asp-for="DepartmentId" size="1" class ="form-control" asp-items="ViewBag.DepartmentId"></select>
             </div>
+            <hr />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <input type="submit" name="Create" value="Добавить сотрудника" class="btn btn-primary" />
             </div>
         </form>
-    </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index" class="action-link">К списку сотрудников</a>
 </div>
 
 @section Scripts {

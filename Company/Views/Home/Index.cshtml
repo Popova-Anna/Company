@@ -2,11 +2,8 @@
 @{
     ViewData["Title"] = "Главная страница";
 }
-
-<div class="content content-column">
- <h2>Структура компании</h2>
- <div id="companyView">
-     @Html.Raw(@ViewBag.Company)
-      
- </div>
+<h2>Структура компании</h2>
+<hr />
+<div class="content">
+    @Html.Raw(@ViewBag.Company)
 </div>

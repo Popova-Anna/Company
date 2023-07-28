@@ -21,8 +21,8 @@ namespace Company.Controllers
         // GET: Empoyees
         public async Task<IActionResult> Index()
         {
-            var companyContext = _context.Empoyees.Include(e => e.Department);
-            return View(await companyContext.ToListAsync());
+            var companyContext = _context.Empoyees.Include(e => e.Department).ToListAsync();
+            return View(await companyContext);
         }
 
         // GET: Empoyees/Details/5
@@ -47,7 +47,7 @@ namespace Company.Controllers
         // GET: Empoyees/Create
         public IActionResult Create()
         {
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Id");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "Id", "Name");
             return View();
         }
 
