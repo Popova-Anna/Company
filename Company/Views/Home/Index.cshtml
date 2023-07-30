@@ -1,9 +1,24 @@
 ﻿@model IEnumerable<Company.Models.Department>
-@{
-    ViewData["Title"] = "Главная страница";
-}
-<h2>Структура компании</h2>
-<hr />
+
 <div class="content">
-    @Html.Raw(@ViewBag.Company)
+    <div class="card">
+        @Html.Raw(@ViewBag.Company)
+    </div>
+    <div class="card-canvas">
+        <div class="canvas" style="background-color:#9797DB">
+            <h2>Отделов</h2>
+            <img src="/img/department.png" />
+            <h2>@Model.Count()</h2>
+        </div>
+        <div class="canvas" style="background-color:#FF7788">
+            <h2>Сотрудников</h2>
+            <img src="/img/People.svg" />
+            <h2>@ViewBag.Employee</h2>
+        </div>
+        <div class="canvas" style="background-color:#5757b5">
+            <h2>Средний возраст</h2>
+            <img src="/img/People.svg" />
+            <h2>@ViewBag.AverageAge[0]</h2>
+        </div>
+    </div>
 </div>

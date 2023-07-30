@@ -61,7 +61,7 @@ namespace Company.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,FirstName,SurName,Patronymic,DateOfBirth,DocSeries,DocNumber,Position,DepartmentId")] Empoyee empoyee)
         {
-            if (ModelState.IsValid)
+            if (empoyee!= null)
             {
                 _context.Add(empoyee);
                 await _context.SaveChangesAsync();
@@ -102,7 +102,7 @@ namespace Company.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (empoyee != null)
             {
                 try
                 {

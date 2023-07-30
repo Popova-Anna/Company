@@ -155,6 +155,7 @@ namespace Company.Controllers
             var department = await _context.Departments
                 .Include(d => d.ParentDepartment)
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (department == null)
             {
                 return NotFound();
@@ -168,9 +169,23 @@ namespace Company.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
+            //Проверка на наличие отделов
             if (_context.Departments == null)
             {
-                return Problem("База отделов пустая!");
+                TempData["Problem"] = "База отделов пустая!";
+                return RedirectToAction("Delete", id);
+            }
+            //Проверка на наличие сотрудников в отделе
+            if (_context.Empoyees.Where(d => d.DepartmentId == id).ToList().Count > 0)
+            {
+                TempData["Problem"] = "В отделе есть сотрудники! Очистите отдел, перед удалением!";
+                return RedirectToAction("Delete", id);
+            }           
+           //Проверка на наличие зависимых отделов
+            if (_context.Departments.Include(d => d.ParentDepartment).Where(d=>d.ParentDepartmentId==id).ToList().Count > 0)
+            {
+                TempData["Problem"] = "У отдела есть зависимые отделы! Очистите отделы!";
+                return RedirectToAction("Delete", id);
             }
             var department = await _context.Departments.FindAsync(id);
             if (department != null)

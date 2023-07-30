@@ -25,7 +25,7 @@ namespace Company.Controllers
         public IActionResult Index()
         {
             List<ViewDepartments> viewDepartments = new List<ViewDepartments>();
-            var companyContext = _context.Departments.Include(d => d.InverseParentDepartment).ToList();
+            var companyContext = _context.Departments.Include(d => d.InverseParentDepartment).Include(e=>e.Empoyees).ToList();
             var sb = new StringBuilder();
             foreach (var department in companyContext)
             {
@@ -36,6 +36,10 @@ namespace Company.Controllers
 
             }
             ViewBag.Company = sb.ToString();
+            ViewData["Title"] = "Структура компании";
+            var countEmployee =  _context.Empoyees.ToList().Count;
+            ViewBag.Employee = countEmployee;
+            ViewBag.AverageAge = _context.Database.SqlQuery<int>($"SELECT AVG(DATEDIFF(YEAR, DateOfBirth, GETDATE())) AS average_age FROM dbo.Empoyee").ToList();
             return View(companyContext);
         }
 

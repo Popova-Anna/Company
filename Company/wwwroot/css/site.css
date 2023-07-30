@@ -1,12 +1,25 @@
-﻿/* Default element style */
+﻿:root {
+    --body: #F5F5FC;
+    --header: #FEFEFE;
+    --main: #FEFEFE;
+    --card: #F5F5FC;
+    --color-nav: #AAA9B5;
+    --color-header: #34333F;
+    --color-main: #34333F;
+    --color-card: #34333F;
+    --color-table: #34333F;
+    --color-active: #9797DB;
+    --color-canva: #fff;
+}
+
+/* Default element style */
 /* ------------------------------------------------------------- */
 html, body {
     width: 100%;
     height: 100%;
     font-size: 14px;
     font-family: Arial, Helvetica, sans-serif;
-    /*background: linear-gradient(#465B69, #687F88);*/
-    background-color: #C4DFDF;
+    background-color: var(--body);
     margin: 0;
     padding: 0;
     position: relative;
@@ -28,22 +41,26 @@ html, body {
 .li-default {
     list-style-type: none;
 }
-.text-danger{
-    color:red;
+
+.text-danger {
+    color: red;
 }
+
 .action-link {
     text-decoration: none;
     position: relative;
     display: inline-block;
     margin: 20px;
-    padding:20px;
+    padding: 20px;
     color: #465B69;
 }
+
     .action-link::before,
     .action-edit::before,
     .action-details::before,
     .action-create::before,
-    .action-delete::before{
+    .action-delete::before,
+    .p-link::before {
         content: "";
         position: absolute;
         top: 50%;
@@ -52,23 +69,26 @@ html, body {
         width: 15px;
         height: 15px;
         background-size: cover;
-      
     }
-    .action-link::before{
-  background-image: url(/img/back.png)
+
+    .action-link::before {
+        background-image: url(/img/back.png)
     }
+
     .action-link:hover::before,
     .action-edit:hover::before,
     .action-details:hover::before,
     .action-create:hover::before,
-    .action-delete:hover::before {
+    .action-delete:hover::before,
+    .p-link:hover::before {
         filter: drop-shadow(2px 4px 6px black);
     }
 
 .action-edit,
 .action-details,
 .action-create,
-.action-delete{
+.action-delete,
+.p-link {
     position: relative;
     display: inline-block;
     padding-left: 20px;
@@ -77,15 +97,19 @@ html, body {
 .action-edit {
     color: green;
 }
-.action-edit::before {
-    background-image: url(/img/icons8-edit-32.png);
-}
+
+    .action-edit::before {
+        background-image: url(/img/icons8-edit-32.png);
+    }
+
 .action-details {
     color: blue;
 }
-.action-details::before {
-    background-image: url(/img/icons8-information.svg);
-}
+
+    .action-details::before {
+        background-image: url(/img/icons8-information.svg);
+    }
+
 .action-delete {
     color: red;
 }
@@ -101,27 +125,30 @@ html, body {
     .action-create::before {
         background-image: url(/img/icons8-plus.svg)
     }
-/* ------------------------------------------------------------- */
-/*    iPads, Tablets                                             */
-/* ------------------------------------------------------------- */
-@media (min-width: 481px) and (max-width: 768px) {
-    html, body {
+
+.p-link::before {
+    fill:var(--color-header);
+    background-image: url(/img/PeopleBlack.svg);
+}
+    
+    /* ------------------------------------------------------------- */
+    /*    iPads, Tablets                                             */
+    /* ------------------------------------------------------------- */
+    @media (min-width: 481px) and (max-width: 768px) {
+        html, body {
         font-size: 16px;
     }
 
     .content {
         flex-direction: column !important;
     }
-
-    .card-departments, .card-employee {
-        display: flex;
-        flex-direction: column-reverse;
-        width: 90% !important;
-        height: 350px !important;
-    }
-
-        .card-employee img {
-            height: 90% !important;
+        .card,
+        .card-canvas {
+            margin: 10px !important;
+            width: 100% !important;
+        }
+        .canvas{
+            margin:10px !important;
         }
 }
 /* ------------------------------------------------------------- */
@@ -135,15 +162,14 @@ html, body {
     .content {
         flex-direction: column !important;
     }
-
-    .card-departments, .card-employee {
-        width: 90% !important;
-        height: 350px !important;
+    .card,
+    .card-canvas {
+        margin:10px !important;
+        width: 100% !important;
     }
-
-        .card-employee img {
-            height: 90% !important;
-        }
+    .canvas {
+        margin: 10px !important;
+    }
 }
 
 /* ------------------------------------------------------------- */
@@ -164,12 +190,13 @@ nav {
 
 header {
     grid-area: 1/2/2/7;
-    background-color: #F8F6F4;
+    background-color: var(--header);
     margin: 14px;
     padding: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
+    color: var(--color-header);
 }
 
 .wrapper {
@@ -189,16 +216,17 @@ header {
 }
 
 main {
-    background-color: #F8F6F4;
+    background-color: var(--main);
     margin: 15px;
     padding: 15px;
     height: calc(100% - 60px);
     overflow: auto;
-    justify-content:center;
+    justify-content: center;
+    color: var(--color-main);
 }
-/* ------------------------------------------------------------- */
-/* scroll style                                                  */
-/* ------------------------------------------------------------- */
+    /* ------------------------------------------------------------- */
+    /* scroll style                                                  */
+    /* ------------------------------------------------------------- */
     main::-webkit-scrollbar {
         margin-right: 5px;
         width: 6px;
@@ -249,7 +277,7 @@ main {
     .navbar-items .nav-item {
         display: flex;
         flex-direction: column;
-        color: white;
+        color: var(--color-nav);
         align-items: center;
         justify-content: center;
         flex-wrap: nowrap;
@@ -262,10 +290,11 @@ main {
 
 .nav-item img {
     height: 30%;
+    filter: invert(75%);
 }
 
 .nav-item:hover img {
-    filter: invert(75%);
+    filter: invert(60%);
 }
 
 .nav-item:hover h6 {
@@ -275,6 +304,8 @@ main {
 .content {
     display: flex;
     flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
 
 .content-column {
@@ -284,42 +315,44 @@ main {
 /* card style                                                    */
 /* ------------------------------------------------------------- */
 .card {
-    background-color: #F9F9F9;
+    background-color: var(--card);
     display: flex;
-    height: 500px;
-    margin: 10px;
-    padding: 20px;
-    border-radius: 40px;
-    color: white;
+    margin: 0px 5px 0px 10px;
+    color: var(--color-card);
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 35%;
+}
+/* ------------------------------------------------------------- */
+/* style index information                                       */
+/* ------------------------------------------------------------- */
+.card-canvas {
+    background-color: var(--card);
+    margin: 0px 5px 0px 10px;
+    width: 65%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
 }
 
-.card-employee {
-    background: radial-gradient(at left top, #3289A0, #EDCCBB);
-    width: 60%;
-}
-
-    .card-employee img {
-        object-position: left bottom;
+    .card-canvas .canvas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 300px;
+        width: 300px;
+        border-radius: 200px;
+        color: var(--color-canva);
     }
 
-.image {
-    object-position: left bottom;
-    height: 90%;
-    width: 100%;
-}
-
-.card-departments {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-    background-color: #F7D3C1;
-    color: black;
-}
-
-    .card-departments img {
-        width: 100%;
-    }
-
+        .card-canvas .canvas img {
+            height: 40%;
+            width: 40%;
+            fill: white;
+        }
 /* ------------------------------------------------------------- */
 /* table                                                         */
 /* ------------------------------------------------------------- */
@@ -327,6 +360,7 @@ main {
     width: 100%;
     border-collapse: collapse;
     overflow-x: auto;
+    color: var(--color-table);
 }
 
     .table th,
@@ -336,6 +370,10 @@ main {
         border-bottom: 1px solid #ddd;
     }
 
+        .table tr:hover {
+            background-color: #ddd;
+        }
+
     .table th {
         background-color: #f2f2f2;
     }
@@ -343,87 +381,170 @@ main {
     .table tbody tr:nth-child(even) {
         background-color: #f9f9f9;
     }
+        .table tbody tr:nth-child(even):hover {
+            color: black;
+            filter: invert(10%);
+        }
 
-    /* ------------------------------------------------------------- */
-    /* struct organisation                                           */
-    /* ------------------------------------------------------------- */
-    .tree {
-        width: fit-content;
-        list-style-type: none;
+/* ------------------------------------------------------------- */
+/* struct organisation                                           */
+/* ------------------------------------------------------------- */
+
+.card ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+    .card ul > li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 10px;
     }
 
-    .tree li a {
-        color: black;
+        .card ul > li::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -10px;
+            border-left: 1px solid #000;
+            height: 100%;
+        }
+
+        .card ul > li::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            border-top: 1px solid #000;
+            width: 10px;
+        }
+
+    .card ul ul {
+        margin-left: 20px;
     }
-    .tree > li:hover a {
-        color: #E9B384;
-        -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
-        -moz-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
-        box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.6);
+
+.card ul {
+    margin-left: 20px;
+}
+
+    .card ul li:hover a {
+        color: var(--color-active);
     }
+
+    .card ul li a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card ul li a {
+        color: var(--color-card);
+    }
+
+        .card ul li a p {
+            margin: 0px 20px;
+        }
+
 /* ------------------------------------------------------------- */
 /* form                                                          */
 /* ------------------------------------------------------------- */
 select option {
-   padding: 10px;
-   min-height:100px;
+    padding: 10px;
+    min-height: 100px;
 }
+
 .form {
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-width: 500px;
-    min-width:200px;
+    min-width: 200px;
     background-color: #fff;
     padding: 20px;
     border-radius: 20px;
     position: relative;
 }
+
     .form .form-row {
         display: flex;
         flex-direction: row;
-        justify-content:space-between;
+        justify-content: space-between;
         gap: 10px;
     }
 
-        .form .form-group {
-            width:100%;
-            display: flex;
-            flex-direction: column;
+    .form .form-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .form .form-group input[type="text"].form-control,
+        .form .form-group input[type="number"].form-control,
+        .form .form-group input[type="submit"],
+        .form .form-group input[type="date"].form-control,
+        .form .form-group select.form-control {
+            padding: 12px 16px;
+            border: 1px solid rgba(105,105,105,0.397);
+            border-radius: 10px;
         }
 
-            .form .form-group input[type="text"].form-control,
-            .form .form-group input[type="number"].form-control,
-            .form .form-group input[type="submit"],
-            .form .form-group input[type="date"].form-control,
-            .form .form-group select.form-control {
-                padding: 12px 16px;
-                border: 1px solid rgba(105,105,105,0.397);
-                border-radius: 10px;
+            .form .form-group input[type="text"].form-control:focus,
+            .form .form-group input[type="number"].form-control:focus,
+            .form .form-group input[type="submit"]:focus,
+            .form .form-group input[type="date"].form-control:focus,
+            .form .form-group select.form-control:focus {
+                -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
             }
 
-                .form .form-group input[type="text"].form-control:focus,
-                .form .form-group input[type="number"].form-control:focus,
-                .form .form-group input[type="submit"]:focus,
-                .form .form-group input[type="date"].form-control:focus,
-                .form .form-group select.form-control:focus {
-                    -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
-                    -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
-                    box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
-                }
-                .form .form-group input[type="text"].form-control:hover,
-                .form .form-group input[type="number"].form-control:hover,
-                .form .form-group input[type="submit"]:hover,
-                .form .form-group input[type="date"].form-control:hover,
-                .form .form-group select.form-control:hover {
-                    -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
-                    -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
-                    box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
-                }
-    .form .form-group span {
-        margin:5px;
-    }
+            .form .form-group input[type="text"].form-control:hover,
+            .form .form-group input[type="number"].form-control:hover,
+            .form .form-group input[type="submit"]:hover,
+            .form .form-group input[type="date"].form-control:hover,
+            .form .form-group select.form-control:hover {
+                -webkit-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                -moz-box-shadow: 4px 6px 100px 13px rgba(70, 91, 105, 0.2);
+                box-shadow: 4px 6px 50px 13px rgba(70, 91, 105, 0.2);
+            }
+
+        .form .form-group span {
+            margin: 5px;
+        }
+
     .form .control-label {
         display: block;
         margin-bottom: 5px;
     }
+/* ------------------------------------------------------------- */
+/* deteils                                                       */
+/* ------------------------------------------------------------- */
+main dl {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+main dl dt {
+    flex-basis: 30%;
+    color:#AAA9B5;
+    margin-bottom: 5px;
+}
+
+main dl dd {
+    flex-basis: 70%;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+main dl dl::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+/* ------------------------------------------------------------- */
+/* buttons                                                       */
+/* ------------------------------------------------------------- */
+.btn{
+    background-color:green;
+    color:white;
+}
