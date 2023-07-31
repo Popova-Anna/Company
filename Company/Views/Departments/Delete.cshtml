@@ -1,9 +1,14 @@
 ﻿@model Company.Models.Department
 
 <h3>Уверены, что хотите удалить отдел?</h3>
-<div>
-    <h2 class="text-danger">@TempData["Problem"]</h2>
-    <hr />
+<div class="form">
+    @if (TempData["Problem"]!= null)
+    {
+        <h2 class="text-danger">@TempData["Problem"]</h2>
+        <hr />
+    }
+    
+    
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Name)
@@ -25,9 +30,11 @@
         </dd>
     </dl>
     
-    <form class="form"  asp-action="Delete">
+    <form class="form " asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Удалить" class="action-delete" /> 
+        <div class="form-group">
+            <input type="submit" value="Удалить" class=" btn-delete" />
+        </div>        
         <a asp-action="Index" class="action-link">К списку отделов</a>
     </form>
 </div>

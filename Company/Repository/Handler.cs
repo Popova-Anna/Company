@@ -5,6 +5,11 @@ namespace Company.Repository
 {
     public static class Handler
     {
+        /// <summary>
+        /// Метод для вывода структуры компании
+        /// </summary>
+        /// <param name="company">Отдел</param>
+        /// <returns>Строка для вывода на страницу</returns>
         public static string ParentStruct(Department company)
         {
             var sb = new StringBuilder();

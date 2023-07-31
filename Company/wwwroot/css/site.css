@@ -1,10 +1,15 @@
 ﻿:root {
-    --body: #F5F5FC;
-    --header: #FEFEFE;
+    /*--body: #F5F5FC;*/
+    --body: #ededed;
+    --header: #fefefe6100;
+    /*--header: #FEFEFE;*/
     --main: #FEFEFE;
-    --card: #F5F5FC;
-    --color-nav: #AAA9B5;
-    --color-header: #34333F;
+    --card: #f9f9f9;
+    --navbar: #8585BB;
+    --color-nav: #fff;
+    /*--color-nav: #AAA9B5;*/
+    --color-header: #494b57;
+    /*--color-header: #fff;*/
     --color-main: #34333F;
     --color-card: #34333F;
     --color-table: #34333F;
@@ -18,7 +23,7 @@ html, body {
     width: 100%;
     height: 100%;
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
+    /*font-family: Arial, Helvetica, sans-serif;*/
     background-color: var(--body);
     margin: 0;
     padding: 0;
@@ -145,7 +150,7 @@ html, body {
         .card,
         .card-canvas {
             margin: 10px !important;
-            width: 100% !important;
+            width: 95% !important;
         }
         .canvas{
             margin:10px !important;
@@ -165,7 +170,7 @@ html, body {
     .card,
     .card-canvas {
         margin:10px !important;
-        width: 100% !important;
+        width: 95% !important;
     }
     .canvas {
         margin: 10px !important;
@@ -197,7 +202,13 @@ header {
     justify-content: start;
     align-items: center;
     color: var(--color-header);
+    
 }
+    header h1 {
+        /*font-family: "Roboto-Regular";*/
+        font-family: "Roboto-Medium";
+        font-weight: 200;
+    }
 
 .wrapper {
     grid-area: 2/2/5/7;
@@ -212,7 +223,7 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 5px;
+    background-color: var(--navbar);
 }
 
 main {
@@ -223,6 +234,10 @@ main {
     overflow: auto;
     justify-content: center;
     color: var(--color-main);
+    font-family: "Roboto-Regular";
+/*    -webkit-box-shadow: 0px 1px 10px 3px rgba(34, 60, 80, 0.2) inset;
+    -moz-box-shadow: 0px 1px 10px 3px rgba(34, 60, 80, 0.2) inset;
+    box-shadow: 0px 1px 10px 3px rgba(34, 60, 80, 0.2) inset;*/
 }
     /* ------------------------------------------------------------- */
     /* scroll style                                                  */
@@ -272,6 +287,7 @@ main {
     flex-wrap: nowrap;
     align-items: center;
     height: 100% !important;
+    
 }
 
     .navbar-items .nav-item {
@@ -284,20 +300,22 @@ main {
         width: 100%;
     }
 
-.nav-item h6 {
+.nav-item p {
+    font-family: "Roboto-Thin";
+    font-size:12px;
     margin: 10px;
 }
 
 .nav-item img {
     height: 30%;
-    filter: invert(75%);
+    /*filter: invert(75%);*/
 }
 
 .nav-item:hover img {
     filter: invert(60%);
 }
 
-.nav-item:hover h6 {
+.nav-item:hover p {
     filter: invert(75%);
 }
 
@@ -305,7 +323,7 @@ main {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    justify-content: space-between;
+    height: 100%;
 }
 
 .content-column {
@@ -322,6 +340,9 @@ main {
     justify-content: space-between;
     flex-wrap: wrap;
     width: 35%;
+    -webkit-box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
 }
 /* ------------------------------------------------------------- */
 /* style index information                                       */
@@ -335,6 +356,9 @@ main {
     justify-content: space-around;
     align-items: center;
     align-content: center;
+    -webkit-box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
+    box-shadow: 0px 4px 19px -3px rgba(34, 60, 80, 0.2);
 }
 
     .card-canvas .canvas {
@@ -463,6 +487,7 @@ select option {
     padding: 20px;
     border-radius: 20px;
     position: relative;
+    background-color: var(--card);
 }
 
     .form .form-row {
@@ -544,7 +569,39 @@ main dl dl::after {
 /* ------------------------------------------------------------- */
 /* buttons                                                       */
 /* ------------------------------------------------------------- */
-.btn{
-    background-color:green;
-    color:white;
+.btn {
+    background-color: var( --navbar);
+    color: white;
 }
+.btn-delete {
+    background-color: red;
+    color: white;
+}
+
+@font-face {
+    font-family: "Roboto-Medium";
+    src: url("../font/Roboto-Medium.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto-Light";
+    src: url("../font/Roboto-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("../font/Roboto-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto-Thin";
+    src: url("../font/Roboto-Thin.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+} 

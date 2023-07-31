@@ -13,7 +13,7 @@ namespace Company.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly CompanyContext _context = new CompanyContext();
+        private readonly CompanyContext _context = new();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -24,7 +24,7 @@ namespace Company.Controllers
 
         public IActionResult Index()
         {
-            List<ViewDepartments> viewDepartments = new List<ViewDepartments>();
+            List<ViewDepartments> viewDepartments = new();
             var companyContext = _context.Departments.Include(d => d.InverseParentDepartment).Include(e=>e.Empoyees).ToList();
             var sb = new StringBuilder();
             foreach (var department in companyContext)
